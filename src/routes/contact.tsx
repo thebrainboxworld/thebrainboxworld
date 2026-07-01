@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero, SocialLinks } from "@/components/site/SiteLayout";
+import { absoluteUrl } from "@/lib/site";
 import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
@@ -11,9 +12,9 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: "Ready to transform your digital presence? We'd love to hear about your project and explore how we can help." },
       { property: "og:title", content: "Get In Touch — BrainBoxWorld" },
       { property: "og:description", content: "Contact BrainBoxWorld for a free digital marketing consultation." },
-      { property: "og:url", content: "https://thebrainboxworld.lovable.app/contact" },
+      { property: "og:url", content: absoluteUrl("/contact") },
     ],
-    links: [{ rel: "canonical", href: "https://thebrainboxworld.lovable.app/contact" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/contact") }],
   }),
   component: ContactPage,
 });

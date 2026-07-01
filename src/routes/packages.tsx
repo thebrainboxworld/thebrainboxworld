@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { absoluteUrl } from "@/lib/site";
 import { Check } from "lucide-react";
 
 export const Route = createFileRoute("/packages")({
@@ -9,9 +10,9 @@ export const Route = createFileRoute("/packages")({
       { name: "description", content: "Choose your digital marketing package. Starter, Professional and Enterprise plans designed to grow your business online." },
       { property: "og:title", content: "Digital Marketing Packages — BrainBoxWorld" },
       { property: "og:description", content: "Transparent pricing for SEO, web development and digital marketing services." },
-      { property: "og:url", content: "https://thebrainboxworld.lovable.app/packages" },
+      { property: "og:url", content: absoluteUrl("/packages") },
     ],
-    links: [{ rel: "canonical", href: "https://thebrainboxworld.lovable.app/packages" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/packages") }],
     scripts: [
       {
         type: "application/ld+json",

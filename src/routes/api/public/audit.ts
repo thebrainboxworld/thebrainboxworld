@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { supabaseAdmin } from '@/integrations/supabase/client.server';
 import { z } from 'zod';
 
 const schema = z.object({
@@ -19,6 +18,7 @@ export const Route = createFileRoute('/api/public/audit')({
           if (!parsed.success) {
             return new Response(JSON.stringify({ error: 'Invalid input', details: parsed.error.flatten() }), { status: 400, headers: { 'Content-Type': 'application/json' } });
           }
+          const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
           const { error } = await supabaseAdmin.from('audit_submissions').insert({
             name: parsed.data.name,
             email: parsed.data.email,

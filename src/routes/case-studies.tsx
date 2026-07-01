@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
+import { absoluteUrl } from "@/lib/site";
 import { TrendingUp, ArrowRight, Award, BarChart3, ExternalLink } from "lucide-react";
 import { useState } from "react";
 
@@ -10,9 +11,9 @@ export const Route = createFileRoute("/case-studies")({
       { name: "description", content: "Real brands, real strategies, real results. Explore featured case studies plus our full track record of rankings, traffic, and sales growth." },
       { property: "og:title", content: "Case Studies & Track Record — BrainBoxWorld" },
       { property: "og:description", content: "Featured client case studies and a proven track record of measurable outcomes." },
-      { property: "og:url", content: "https://thebrainboxworld.lovable.app/case-studies" },
+      { property: "og:url", content: absoluteUrl("/case-studies") },
     ],
-    links: [{ rel: "canonical", href: "https://thebrainboxworld.lovable.app/case-studies" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/case-studies") }],
   }),
   component: CaseStudiesPage,
 });

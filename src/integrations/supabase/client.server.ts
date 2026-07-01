@@ -5,9 +5,13 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
+function readProcessEnv(name: string): string | undefined {
+  return (globalThis as typeof globalThis & { process?: { env?: Record<string, string | undefined> } }).process?.env?.[name];
+}
+
 function createSupabaseAdminClient() {
-  const SUPABASE_URL = process.env.SUPABASE_URL;
-  const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const SUPABASE_URL = readProcessEnv('SUPABASE_URL');
+  const SUPABASE_SERVICE_ROLE_KEY = readProcessEnv('SUPABASE_SERVICE_ROLE_KEY');
 
   if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
     const missing = [

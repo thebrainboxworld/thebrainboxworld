@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
+import { absoluteUrl } from "@/lib/site";
 import { Check, Users, Award, Target } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
@@ -9,9 +10,9 @@ export const Route = createFileRoute("/about")({
       { name: "description", content: "BrainBoxWorld is a digital marketing agency with 8+ years of experience building SEO and growth systems that scale." },
       { property: "og:title", content: "About BrainBoxWorld" },
       { property: "og:description", content: "Strategy-first. Conversion-obsessed. Full-stack execution." },
-      { property: "og:url", content: "https://thebrainboxworld.lovable.app/about" },
+      { property: "og:url", content: absoluteUrl("/about") },
     ],
-    links: [{ rel: "canonical", href: "https://thebrainboxworld.lovable.app/about" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/about") }],
   }),
   component: AboutPage,
 });

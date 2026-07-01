@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, CALENDLY_LINK, WHATSAPP_LINK } from "@/components/site/SiteLayout";
+import { absoluteUrl } from "@/lib/site";
 import { useEffect, useRef, useState } from "react";
 import {
   Code2, Palette, ShoppingCart, BrainCog, TrendingUp, Smartphone, Headphones,
@@ -8,16 +9,19 @@ import {
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "BrainBoxWorld — Digital Solutions, AI & Automation" },
-      { name: "description", content: "BrainBoxWorld builds high-performance websites, AI systems, automation, and growth-focused digital experiences. Book a 30-minute strategy call." },
-      { property: "og:title", content: "BrainBoxWorld — Modern Digital Solutions" },
-      { property: "og:description", content: "Websites, apps, AI, automation, and growth systems that scale. Book a 30-minute strategy call." },
-      { property: "og:url", content: "https://thebrainboxworld.lovable.app/" },
-    ],
-    links: [{ rel: "canonical", href: "https://thebrainboxworld.lovable.app/" }],
-  }),
+  head: () => {
+    const url = absoluteUrl("/");
+    return {
+      meta: [
+        { title: "BrainBoxWorld — Digital Solutions, AI & Automation" },
+        { name: "description", content: "BrainBoxWorld builds high-performance websites, AI systems, automation, and growth-focused digital experiences. Book a 30-minute strategy call." },
+        { property: "og:title", content: "BrainBoxWorld — Modern Digital Solutions" },
+        { property: "og:description", content: "Websites, apps, AI, automation, and growth systems that scale. Book a 30-minute strategy call." },
+        { property: "og:url", content: url },
+      ],
+      links: [{ rel: "canonical", href: url }],
+    };
+  },
   component: HomePage,
 });
 
