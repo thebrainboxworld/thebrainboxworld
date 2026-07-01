@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as ExperienceRouteImport } from './routes/experience'
@@ -28,6 +29,11 @@ import { Route as ApiPublicAuditRouteImport } from './routes/api/public/audit'
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortfolioRoute = PortfolioRouteImport.update({
@@ -111,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/experience': typeof ExperienceRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -127,6 +134,7 @@ export interface FileRoutesByTo {
   '/experience': typeof ExperienceRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -145,6 +153,7 @@ export interface FileRoutesById {
   '/experience': typeof ExperienceRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -164,6 +173,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/packages'
     | '/portfolio'
+    | '/robots.txt'
     | '/sitemap.xml'
     | '/blog/$slug'
     | '/blog/'
@@ -180,6 +190,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/packages'
     | '/portfolio'
+    | '/robots.txt'
     | '/sitemap.xml'
     | '/blog/$slug'
     | '/blog'
@@ -197,6 +208,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/packages'
     | '/portfolio'
+    | '/robots.txt'
     | '/sitemap.xml'
     | '/blog/$slug'
     | '/blog/'
@@ -215,6 +227,7 @@ export interface RootRouteChildren {
   ExperienceRoute: typeof ExperienceRoute
   PackagesRoute: typeof PackagesRoute
   PortfolioRoute: typeof PortfolioRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiPublicAuditRoute: typeof ApiPublicAuditRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
@@ -228,6 +241,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portfolio': {
@@ -353,6 +373,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExperienceRoute: ExperienceRoute,
   PackagesRoute: PackagesRoute,
   PortfolioRoute: PortfolioRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiPublicAuditRoute: ApiPublicAuditRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
