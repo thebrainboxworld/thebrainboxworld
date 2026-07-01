@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { sendLovableEmail } from '@lovable.dev/email-js';
 import { z } from 'zod';
 import { absoluteUrl, getSiteUrl } from '@/lib/site';
 
@@ -175,6 +174,7 @@ async function sendEmail(lead: Lead) {
     return;
   }
   try {
+    const { sendLovableEmail } = await import('@lovable.dev/email-js');
     await sendLovableEmail(
       {
         to: NOTIFY_EMAIL,
