@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { supabaseAdmin } from '@/integrations/supabase/client.server';
 import { sendLovableEmail } from '@lovable.dev/email-js';
 import { z } from 'zod';
+import { absoluteUrl, getSiteUrl } from '@/lib/site';
 
 // Unified lead-capture endpoint used by the Contact form and the Book SEO Audit form.
 // 1. Validates + spam-protects input
@@ -10,8 +10,8 @@ import { z } from 'zod';
 // 4. Sends a branded email notification to the BrainBox World inbox
 
 const NOTIFY_EMAIL = 'hellobrainboxworld@gmail.com';
-const SITE_URL = 'https://thebrainboxworld.lovable.app';
-const LOGO_URL = `${SITE_URL}/email-logo.png`;
+const SITE_URL = getSiteUrl();
+const LOGO_URL = absoluteUrl('/email-logo.png');
 
 const schema = z.object({
   name: z.string().trim().min(1).max(120),
@@ -230,6 +230,7 @@ export const Route = createFileRoute('/api/public/leads')({
             created_at: createdAt,
           };
 
+          const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
           const { error } = await supabaseAdmin.from('leads').insert({
             name: lead.name,
             email: lead.email,
