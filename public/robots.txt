@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://thebrainboxworld.lovable.app/sitemap.xml
