@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
+import { absoluteUrl } from "@/lib/site";
 import { MessageCircle } from "lucide-react";
 
 export const Route = createFileRoute("/portfolio")({
@@ -9,9 +10,9 @@ export const Route = createFileRoute("/portfolio")({
       { name: "description", content: "Check out some of our recent projects and see how we've helped businesses like yours succeed online." },
       { property: "og:title", content: "Our Portfolio — BrainBoxWorld" },
       { property: "og:description", content: "Recent SEO and web development projects delivered by BrainBoxWorld." },
-      { property: "og:url", content: "https://thebrainboxworld.lovable.app/portfolio" },
+      { property: "og:url", content: absoluteUrl("/portfolio") },
     ],
-    links: [{ rel: "canonical", href: "https://thebrainboxworld.lovable.app/portfolio" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/portfolio") }],
   }),
   component: PortfolioPage,
 });

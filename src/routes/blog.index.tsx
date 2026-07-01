@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { ArrowRight } from "lucide-react";
 import { blogPosts } from "@/lib/blog-posts";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
@@ -10,9 +11,9 @@ export const Route = createFileRoute("/blog/")({
       { name: "description", content: "Strategic insights, tactical guides, and growth frameworks from the BrainBoxWorld team." },
       { property: "og:title", content: "BrainBoxWorld Blog" },
       { property: "og:description", content: "SEO, conversion, and growth insights for ambitious brands." },
-      { property: "og:url", content: "https://thebrainboxworld.lovable.app/blog" },
+      { property: "og:url", content: absoluteUrl("/blog") },
     ],
-    links: [{ rel: "canonical", href: "https://thebrainboxworld.lovable.app/blog" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/blog") }],
   }),
   component: BlogPage,
 });

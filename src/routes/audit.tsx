@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
+import { absoluteUrl } from "@/lib/site";
 import { Check, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -11,9 +12,9 @@ export const Route = createFileRoute("/audit")({
       { name: "description", content: "Book a free Growth Foundations Audit — a strategic diagnostic that gives you clarity and confidence to scale." },
       { property: "og:title", content: "Free SEO & Growth Audit — BrainBoxWorld" },
       { property: "og:description", content: "Diagnostic-led audit for brands ready to scale without structural friction." },
-      { property: "og:url", content: "https://thebrainboxworld.lovable.app/audit" },
+      { property: "og:url", content: absoluteUrl("/audit") },
     ],
-    links: [{ rel: "canonical", href: "https://thebrainboxworld.lovable.app/audit" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/audit") }],
   }),
   component: AuditPage,
 });
