@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { blogPosts, getPostBySlug, type BlogPost, type BlogSection } from "@/lib/blog-posts";
+import { absoluteUrl } from "@/lib/site";
 
 // Render **bold** segments inline without a markdown dependency.
 function RichText({ text }: { text: string }) {
@@ -35,13 +36,13 @@ export const Route = createFileRoute("/blog/$slug")({
           { property: "og:description", content: loaderData.excerpt },
           { property: "og:image", content: loaderData.img },
           { property: "og:type", content: "article" },
-          { property: "og:url", content: `https://thebrainboxworld.lovable.app/blog/${params.slug}` },
+          { property: "og:url", content: absoluteUrl(`/blog/${params.slug}`) },
           { name: "twitter:card", content: "summary_large_image" },
           { name: "twitter:image", content: loaderData.img },
         ]
       : [{ title: "Article — BrainBoxWorld" }],
     links: loaderData
-      ? [{ rel: "canonical", href: `https://thebrainboxworld.lovable.app/blog/${params.slug}` }]
+      ? [{ rel: "canonical", href: absoluteUrl(`/blog/${params.slug}`) }]
       : [],
     scripts: loaderData
       ? [
@@ -59,10 +60,10 @@ export const Route = createFileRoute("/blog/$slug")({
                 name: "BrainBoxWorld",
                 logo: {
                   "@type": "ImageObject",
-                  url: "https://thebrainboxworld.lovable.app/favicon.ico",
+                  url: absoluteUrl("/favicon.ico"),
                 },
               },
-              mainEntityOfPage: `https://thebrainboxworld.lovable.app/blog/${params.slug}`,
+              mainEntityOfPage: absoluteUrl(`/blog/${params.slug}`),
             }),
           },
         ]

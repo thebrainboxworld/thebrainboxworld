@@ -10,6 +10,7 @@ import {
 
 import appCss from "../styles.css?url";
 import { Toaster } from "@/components/ui/sonner";
+import { absoluteUrl } from "@/lib/site";
 
 function NotFoundComponent() {
   return (
@@ -102,8 +103,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "BrainBoxWorld",
-          url: "https://thebrainboxworld.lovable.app",
-          logo: "https://thebrainboxworld.lovable.app/favicon.ico",
+          url: absoluteUrl(),
+          logo: absoluteUrl("/favicon.ico"),
           description: "Digital marketing, SEO, AI and automation solutions for ambitious brands.",
           sameAs: [],
         }),
@@ -114,7 +115,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "WebSite",
           name: "BrainBoxWorld",
-          url: "https://thebrainboxworld.lovable.app",
+          url: absoluteUrl(),
         }),
       },
     ],
