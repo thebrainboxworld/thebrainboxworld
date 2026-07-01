@@ -13,6 +13,10 @@ const NOTIFY_EMAIL = 'hellobrainboxworld@gmail.com';
 const SITE_URL = getSiteUrl();
 const LOGO_URL = absoluteUrl('/email-logo.png');
 
+function readProcessEnv(name: string): string | undefined {
+  return (globalThis as typeof globalThis & { process?: { env?: Record<string, string | undefined> } }).process?.env?.[name];
+}
+
 const schema = z.object({
   name: z.string().trim().min(1).max(120),
   email: z.string().trim().email().max(255),
@@ -48,8 +52,8 @@ type Lead = {
 };
 
 async function sendTelegram(lead: Lead) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  const token = readProcessEnv('TELEGRAM_BOT_TOKEN');
+  const chatId = readProcessEnv('TELEGRAM_CHAT_ID');
   if (!token || !chatId) {
     console.warn('Telegram credentials not configured — skipping Telegram notification');
     return;
@@ -161,11 +165,11 @@ function brandedEmailText(lead: Lead): string {
 }
 
 async function sendEmail(lead: Lead) {
-  const apiKey = process.env.LOVABLE_API_KEY;
+  const apiKey = readProcessEnv('LOVABLE_API_KEY');
   // FROM_EMAIL must be on the verified sender domain; SENDER_DOMAIN is that
   // verified subdomain FQDN. Both are set once the email domain is configured.
-  const fromEmail = process.env.LEADS_FROM_EMAIL;
-  const senderDomain = process.env.LEADS_SENDER_DOMAIN;
+  const fromEmail = readProcessEnv('LEADS_FROM_EMAIL');
+  const senderDomain = readProcessEnv('LEADS_SENDER_DOMAIN');
   if (!apiKey || !fromEmail || !senderDomain) {
     console.warn('Email sender not configured (LEADS_FROM_EMAIL / LEADS_SENDER_DOMAIN) — skipping email notification');
     return;

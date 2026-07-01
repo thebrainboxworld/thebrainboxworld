@@ -3,8 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
 function readProcessEnv(name: string): string | undefined {
-  if (typeof process === 'undefined') return undefined;
-  return process.env?.[name];
+  return (globalThis as typeof globalThis & { process?: { env?: Record<string, string | undefined> } }).process?.env?.[name];
 }
 
 function createSupabaseClient() {

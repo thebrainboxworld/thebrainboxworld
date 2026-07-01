@@ -2,8 +2,7 @@ export const SITE_NAME = "BrainBoxWorld";
 export const DEFAULT_SITE_URL = "https://thebrainboxworld.lovable.app";
 
 function readProcessEnv(name: string): string | undefined {
-  if (typeof process === "undefined") return undefined;
-  return process.env?.[name];
+  return (globalThis as typeof globalThis & { process?: { env?: Record<string, string | undefined> } }).process?.env?.[name];
 }
 
 function normalizeUrl(url: string): string {
