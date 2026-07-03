@@ -30,16 +30,8 @@ export const Route = createFileRoute("/")({
 
 /* ----------------------------- DATA ----------------------------- */
 
-const techGroups = [
-  { group: "Frontend", items: ["React", "Next.js", "Tailwind CSS", "Webflow", "Framer"] },
-  { group: "Backend", items: ["Node.js", "TypeScript", "MongoDB", "PostgreSQL", "Firebase"] },
-  { group: "AI & Automation", items: ["OpenAI", "Zapier", "n8n", "LangChain"] },
-  { group: "E-Commerce", items: ["Shopify", "WooCommerce", "Stripe", "WordPress"] },
-  { group: "Analytics", items: ["Google Analytics", "Mixpanel", "Hotjar"] },
-  { group: "Cloud", items: ["AWS", "Vercel", "Cloudflare"] },
-  { group: "Design", items: ["Figma", "Adobe XD"] },
-];
-const techMarquee = techGroups.flatMap((g) => g.items);
+
+
 
 const stats = [
   { value: 250, suffix: "+", label: "Projects Delivered" },
