@@ -1,5 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, CALENDLY_LINK, WHATSAPP_LINK } from "@/components/site/SiteLayout";
+import { PlatformWall } from "@/components/site/PlatformWall";
+import { ClientResults } from "@/components/site/ClientResults";
+import { ecosystemProjects } from "@/lib/portfolio";
 import { absoluteUrl } from "@/lib/site";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -27,16 +30,8 @@ export const Route = createFileRoute("/")({
 
 /* ----------------------------- DATA ----------------------------- */
 
-const techGroups = [
-  { group: "Frontend", items: ["React", "Next.js", "Tailwind CSS", "Webflow", "Framer"] },
-  { group: "Backend", items: ["Node.js", "TypeScript", "MongoDB", "PostgreSQL", "Firebase"] },
-  { group: "AI & Automation", items: ["OpenAI", "Zapier", "n8n", "LangChain"] },
-  { group: "E-Commerce", items: ["Shopify", "WooCommerce", "Stripe", "WordPress"] },
-  { group: "Analytics", items: ["Google Analytics", "Mixpanel", "Hotjar"] },
-  { group: "Cloud", items: ["AWS", "Vercel", "Cloudflare"] },
-  { group: "Design", items: ["Figma", "Adobe XD"] },
-];
-const techMarquee = techGroups.flatMap((g) => g.items);
+
+
 
 const stats = [
   { value: 250, suffix: "+", label: "Projects Delivered" },
@@ -94,16 +89,8 @@ const services = [
   },
 ];
 
-const portfolio = [
-  { name: "Mimi & Co.", cat: "E-Commerce · Fashion", img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900&h=600&fit=crop", url: "https://mimiandco.com.au" },
-  { name: "Retrospec", cat: "DTC · Outdoor", img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=900&h=600&fit=crop", url: "https://retrospec.com/" },
-  { name: "Darn Tough", cat: "Apparel · Heritage", img: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=900&h=600&fit=crop", url: "https://darntough.com/" },
-  { name: "Trnda", cat: "Fashion · Lifestyle", img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&h=600&fit=crop", url: "https://trnda.com/" },
-  { name: "Weightlifting House", cat: "Sports Equipment", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&h=600&fit=crop", url: "https://ukstore.weightliftinghouse.com/" },
-  { name: "Goondiwindi Cotton", cat: "Heritage · Cotton", img: "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=900&h=600&fit=crop", url: "https://goondiwindicotton.com.au/" },
-  { name: "Benetek", cat: "Retail · Lifestyle", img: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=900&h=600&fit=crop", url: "https://shopbenetek.com/" },
-  { name: "The Landmark Project", cat: "Adventure Gear", img: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=900&h=600&fit=crop", url: "https://thelandmarkproject.com/" },
-];
+
+
 
 const testimonials = [
   { quote: "BrainBoxWorld didn't just optimize our site — they rebuilt our entire growth engine. Organic traffic doubled within 90 days.", author: "Sarah Chen", role: "Founder, Retrospec", rating: 5 },
@@ -319,40 +306,16 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ====================== TECH STACK MARQUEE ====================== */}
+      {/* ====================== PLATFORMS WE WORK WITH ====================== */}
       <section className="relative py-12 px-4">
         <SectionHeading
-          label="POWERED BY"
-          title={<>Industry-leading <span className="text-gradient">technologies</span></>}
-          subtitle="We use modern tools and scalable technologies to build high-performance digital experiences, AI systems, automation platforms, and growth-focused business solutions."
+          label="PLATFORMS WE WORK WITH"
+          title={<>Built on <span className="text-gradient">world-class technology</span></>}
+          subtitle="From storefronts to AI — we build with the platforms and tools trusted by the world's best teams. Hover to explore."
         />
-
-        <div className="relative space-y-6 marquee-mask">
-          <div className="flex gap-4 animate-marquee w-max">
-            {[...techMarquee, ...techMarquee].map((t, i) => (
-              <div key={`a-${i}`} className="glass px-6 py-4 rounded-xl text-sm font-semibold text-slate-200 whitespace-nowrap hover:bg-indigo-500/10 hover:text-white transition-all">
-                {t}
-              </div>
-            ))}
-          </div>
-          <div className="flex gap-4 animate-marquee-reverse w-max">
-            {[...techMarquee].reverse().concat([...techMarquee].reverse()).map((t, i) => (
-              <div key={`b-${i}`} className="glass px-6 py-4 rounded-xl text-sm font-semibold text-slate-200 whitespace-nowrap hover:bg-violet-500/10 hover:text-white transition-all">
-                {t}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
-          {techGroups.slice(0, 4).map((g) => (
-            <div key={g.group} className="grad-border p-5 hover-lift reveal">
-              <div className="text-xs tracking-widest text-indigo-300">{g.group.toUpperCase()}</div>
-              <div className="mt-2 text-sm text-slate-300">{g.items.join(" · ")}</div>
-            </div>
-          ))}
-        </div>
+        <PlatformWall />
       </section>
+
 
       {/* ====================== WHY US ====================== */}
       <section className="relative py-12 px-4 bg-gradient-to-b from-transparent via-indigo-950/20 to-transparent">
@@ -408,31 +371,33 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ====================== PORTFOLIO ====================== */}
+      {/* ====================== PORTFOLIO / ECOSYSTEM ====================== */}
       <section className="relative py-12 px-4 bg-gradient-to-b from-transparent via-violet-950/20 to-transparent">
         <div className="max-w-[1400px] mx-auto">
           <SectionHeading
-            label="SELECTED WORK"
-            title={<>Projects that move <span className="text-gradient">the needle</span></>}
-            subtitle="From DTC brands to enterprise platforms — measurable outcomes, premium craft."
+            label="THE BRAINBOXWORLD ECOSYSTEM"
+            title={<>One agency, <span className="text-gradient">three continents</span></>}
+            subtitle="Choose the team that fits your region and goals — Nigeria, the UK, or VANTIQ Creative in the USA. Wherever you are, we work with clients worldwide."
           />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {portfolio.slice(0, 6).map((p, i) => (
-              <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer"
-                className="group grad-border overflow-hidden hover-lift reveal" style={{ transitionDelay: `${i * 60}ms` }}>
+          <div className="grid md:grid-cols-3 gap-6">
+            {ecosystemProjects.map((p, i) => (
+              <Link key={p.id} to="/portfolio"
+                className="group grad-border overflow-hidden hover-lift reveal" style={{ transitionDelay: `${i * 80}ms` }}>
                 <div className="relative h-56 overflow-hidden">
-                  <img src={p.img} alt={`${p.name} website showcase`} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1200ms]" />
+                  <img src={p.image} alt={`${p.name} website preview`} loading="lazy" className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-[1400ms]" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a] via-[#0a0a1a]/30 to-transparent" />
-                  <div className="absolute top-3 left-3 text-[10px] tracking-widest uppercase px-2 py-1 rounded-md glass text-indigo-200">{p.cat}</div>
-                </div>
-                <div className="p-5 flex items-center justify-between">
-                  <div>
-                    <div className="font-semibold text-white">{p.name}</div>
-                    <div className="text-xs text-slate-400 mt-0.5">Live · Visit website</div>
+                  <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full glass text-white border border-white/15">
+                    <span aria-hidden>{p.regionFlag}</span> {p.region}
                   </div>
-                  <ArrowUpRight className="w-5 h-5 text-indigo-300 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </div>
-              </a>
+                <div className="p-5">
+                  <div className="font-semibold text-white text-lg">{p.name}</div>
+                  <div className="text-xs text-slate-400 mt-1">{p.tagline}</div>
+                  <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-300 group-hover:text-indigo-200">
+                    Explore <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
           <div className="text-center mt-12">
@@ -442,6 +407,10 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ====================== CLIENT RESULTS ====================== */}
+      <ClientResults />
+
 
       {/* ====================== PROCESS ====================== */}
       <section className="relative py-12 px-4">
