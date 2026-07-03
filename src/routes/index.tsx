@@ -379,31 +379,33 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ====================== PORTFOLIO ====================== */}
+      {/* ====================== PORTFOLIO / ECOSYSTEM ====================== */}
       <section className="relative py-12 px-4 bg-gradient-to-b from-transparent via-violet-950/20 to-transparent">
         <div className="max-w-[1400px] mx-auto">
           <SectionHeading
-            label="SELECTED WORK"
-            title={<>Projects that move <span className="text-gradient">the needle</span></>}
-            subtitle="From DTC brands to enterprise platforms — measurable outcomes, premium craft."
+            label="THE BRAINBOXWORLD ECOSYSTEM"
+            title={<>One agency, <span className="text-gradient">three continents</span></>}
+            subtitle="Choose the team that fits your region and goals — Nigeria, the UK, or VANTIQ Creative in the USA. Wherever you are, we work with clients worldwide."
           />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {portfolio.slice(0, 6).map((p, i) => (
-              <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer"
-                className="group grad-border overflow-hidden hover-lift reveal" style={{ transitionDelay: `${i * 60}ms` }}>
+          <div className="grid md:grid-cols-3 gap-6">
+            {ecosystemProjects.map((p, i) => (
+              <Link key={p.id} to="/portfolio"
+                className="group grad-border overflow-hidden hover-lift reveal" style={{ transitionDelay: `${i * 80}ms` }}>
                 <div className="relative h-56 overflow-hidden">
-                  <img src={p.img} alt={`${p.name} website showcase`} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1200ms]" />
+                  <img src={p.image} alt={`${p.name} website preview`} loading="lazy" className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-[1400ms]" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a] via-[#0a0a1a]/30 to-transparent" />
-                  <div className="absolute top-3 left-3 text-[10px] tracking-widest uppercase px-2 py-1 rounded-md glass text-indigo-200">{p.cat}</div>
-                </div>
-                <div className="p-5 flex items-center justify-between">
-                  <div>
-                    <div className="font-semibold text-white">{p.name}</div>
-                    <div className="text-xs text-slate-400 mt-0.5">Live · Visit website</div>
+                  <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full glass text-white border border-white/15">
+                    <span aria-hidden>{p.regionFlag}</span> {p.region}
                   </div>
-                  <ArrowUpRight className="w-5 h-5 text-indigo-300 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </div>
-              </a>
+                <div className="p-5">
+                  <div className="font-semibold text-white text-lg">{p.name}</div>
+                  <div className="text-xs text-slate-400 mt-1">{p.tagline}</div>
+                  <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-300 group-hover:text-indigo-200">
+                    Explore <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
           <div className="text-center mt-12">
@@ -413,6 +415,10 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ====================== CLIENT RESULTS ====================== */}
+      <ClientResults />
+
 
       {/* ====================== PROCESS ====================== */}
       <section className="relative py-12 px-4">
