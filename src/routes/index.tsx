@@ -322,40 +322,16 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ====================== TECH STACK MARQUEE ====================== */}
+      {/* ====================== PLATFORMS WE WORK WITH ====================== */}
       <section className="relative py-12 px-4">
         <SectionHeading
-          label="POWERED BY"
-          title={<>Industry-leading <span className="text-gradient">technologies</span></>}
-          subtitle="We use modern tools and scalable technologies to build high-performance digital experiences, AI systems, automation platforms, and growth-focused business solutions."
+          label="PLATFORMS WE WORK WITH"
+          title={<>Built on <span className="text-gradient">world-class technology</span></>}
+          subtitle="From storefronts to AI — we build with the platforms and tools trusted by the world's best teams. Hover to explore."
         />
-
-        <div className="relative space-y-6 marquee-mask">
-          <div className="flex gap-4 animate-marquee w-max">
-            {[...techMarquee, ...techMarquee].map((t, i) => (
-              <div key={`a-${i}`} className="glass px-6 py-4 rounded-xl text-sm font-semibold text-slate-200 whitespace-nowrap hover:bg-indigo-500/10 hover:text-white transition-all">
-                {t}
-              </div>
-            ))}
-          </div>
-          <div className="flex gap-4 animate-marquee-reverse w-max">
-            {[...techMarquee].reverse().concat([...techMarquee].reverse()).map((t, i) => (
-              <div key={`b-${i}`} className="glass px-6 py-4 rounded-xl text-sm font-semibold text-slate-200 whitespace-nowrap hover:bg-violet-500/10 hover:text-white transition-all">
-                {t}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
-          {techGroups.slice(0, 4).map((g) => (
-            <div key={g.group} className="grad-border p-5 hover-lift reveal">
-              <div className="text-xs tracking-widest text-indigo-300">{g.group.toUpperCase()}</div>
-              <div className="mt-2 text-sm text-slate-300">{g.items.join(" · ")}</div>
-            </div>
-          ))}
-        </div>
+        <PlatformWall />
       </section>
+
 
       {/* ====================== WHY US ====================== */}
       <section className="relative py-12 px-4 bg-gradient-to-b from-transparent via-indigo-950/20 to-transparent">
