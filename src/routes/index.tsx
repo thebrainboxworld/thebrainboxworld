@@ -89,16 +89,8 @@ const services = [
   },
 ];
 
-const portfolio = [
-  { name: "Mimi & Co.", cat: "E-Commerce · Fashion", img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=900&h=600&fit=crop", url: "https://mimiandco.com.au" },
-  { name: "Retrospec", cat: "DTC · Outdoor", img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=900&h=600&fit=crop", url: "https://retrospec.com/" },
-  { name: "Darn Tough", cat: "Apparel · Heritage", img: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=900&h=600&fit=crop", url: "https://darntough.com/" },
-  { name: "Trnda", cat: "Fashion · Lifestyle", img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&h=600&fit=crop", url: "https://trnda.com/" },
-  { name: "Weightlifting House", cat: "Sports Equipment", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&h=600&fit=crop", url: "https://ukstore.weightliftinghouse.com/" },
-  { name: "Goondiwindi Cotton", cat: "Heritage · Cotton", img: "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=900&h=600&fit=crop", url: "https://goondiwindicotton.com.au/" },
-  { name: "Benetek", cat: "Retail · Lifestyle", img: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=900&h=600&fit=crop", url: "https://shopbenetek.com/" },
-  { name: "The Landmark Project", cat: "Adventure Gear", img: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=900&h=600&fit=crop", url: "https://thelandmarkproject.com/" },
-];
+
+
 
 const testimonials = [
   { quote: "BrainBoxWorld didn't just optimize our site — they rebuilt our entire growth engine. Organic traffic doubled within 90 days.", author: "Sarah Chen", role: "Founder, Retrospec", rating: 5 },
