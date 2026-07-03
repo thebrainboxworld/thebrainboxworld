@@ -1,5 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout, CALENDLY_LINK, WHATSAPP_LINK } from "@/components/site/SiteLayout";
+import { PlatformWall } from "@/components/site/PlatformWall";
+import { ClientResults } from "@/components/site/ClientResults";
+import { ecosystemProjects } from "@/lib/portfolio";
 import { absoluteUrl } from "@/lib/site";
 import { useEffect, useRef, useState } from "react";
 import {
