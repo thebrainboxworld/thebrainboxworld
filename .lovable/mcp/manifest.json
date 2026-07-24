@@ -1,0 +1,210 @@
+{
+  "version": 1,
+  "sdk_version": "0.24.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "brainboxworld-mcp",
+      "version": "0.1.0",
+      "title": "BrainBoxWorld MCP"
+    },
+    "tools": [
+      {
+        "name": "list_blog_posts",
+        "title": "List blog posts",
+        "description": "List BrainBoxWorld blog posts with slug, title, tag, date, and excerpt.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_blog_post",
+        "title": "Get blog post",
+        "description": "Get the full content of a BrainBoxWorld blog post by slug.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "minLength": 1,
+              "description": "The blog post slug, from list_blog_posts."
+            }
+          },
+          "required": [
+            "slug"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "submit_lead",
+        "title": "Submit a lead",
+        "description": "Submit a general lead to BrainBoxWorld. Sends the same notifications as the website's contact/lead forms.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": true
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120,
+              "description": "Full name of the person."
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 255,
+              "description": "Contact email."
+            },
+            "phone": {
+              "type": "string",
+              "maxLength": 40,
+              "description": "Phone number."
+            },
+            "company": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "website": {
+              "type": "string",
+              "maxLength": 255
+            },
+            "service": {
+              "type": "string",
+              "maxLength": 120,
+              "description": "Service of interest, e.g. SEO."
+            },
+            "message": {
+              "type": "string",
+              "maxLength": 4000
+            },
+            "source_page": {
+              "type": "string",
+              "maxLength": 120,
+              "description": "Where the lead originated. Defaults to 'MCP'."
+            }
+          },
+          "required": [
+            "name",
+            "email"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "submit_contact",
+        "title": "Submit a contact message",
+        "description": "Send a message through BrainBoxWorld's Contact form. The team is notified by email and Telegram.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": true
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 255
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4000
+            },
+            "company": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "service": {
+              "type": "string",
+              "maxLength": 120
+            }
+          },
+          "required": [
+            "name",
+            "email",
+            "message"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "request_audit",
+        "title": "Request a free SEO audit",
+        "description": "Book a free SEO/website audit with BrainBoxWorld.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": true
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "maxLength": 255
+            },
+            "website": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255,
+              "description": "The website to audit."
+            },
+            "goals": {
+              "type": "string",
+              "maxLength": 4000,
+              "description": "Goals or context for the audit."
+            }
+          },
+          "required": [
+            "name",
+            "email",
+            "website"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
