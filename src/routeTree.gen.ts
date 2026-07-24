@@ -14,6 +14,7 @@ import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
@@ -53,6 +54,11 @@ const PackagesRoute = PackagesRouteImport.update({
 const McpRoute = McpRouteImport.update({
   id: '/mcp',
   path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
+  id: '/llms-full.txt',
+  path: '/llms-full.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExperienceRoute = ExperienceRouteImport.update({
@@ -142,6 +148,7 @@ export interface FileRoutesByFullPath {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRoute
@@ -163,6 +170,7 @@ export interface FileRoutesByTo {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRoute
@@ -186,6 +194,7 @@ export interface FileRoutesById {
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRoute
@@ -210,6 +219,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/experience'
+    | '/llms-full.txt'
     | '/mcp'
     | '/packages'
     | '/portfolio'
@@ -231,6 +241,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/experience'
+    | '/llms-full.txt'
     | '/mcp'
     | '/packages'
     | '/portfolio'
@@ -253,6 +264,7 @@ export interface FileRouteTypes {
     | '/case-studies'
     | '/contact'
     | '/experience'
+    | '/llms-full.txt'
     | '/mcp'
     | '/packages'
     | '/portfolio'
@@ -276,6 +288,7 @@ export interface RootRouteChildren {
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
   ExperienceRoute: typeof ExperienceRoute
+  LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
   McpRoute: typeof McpRoute
   PackagesRoute: typeof PackagesRoute
   PortfolioRoute: typeof PortfolioRoute
@@ -324,6 +337,13 @@ declare module '@tanstack/react-router' {
       path: '/mcp'
       fullPath: '/mcp'
       preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms-full.txt': {
+      id: '/llms-full.txt'
+      path: '/llms-full.txt'
+      fullPath: '/llms-full.txt'
+      preLoaderRoute: typeof LlmsFullDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/experience': {
@@ -454,6 +474,7 @@ const rootRouteChildren: RootRouteChildren = {
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
   ExperienceRoute: ExperienceRoute,
+  LlmsFullDottxtRoute: LlmsFullDottxtRoute,
   McpRoute: McpRoute,
   PackagesRoute: PackagesRoute,
   PortfolioRoute: PortfolioRoute,
