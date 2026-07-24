@@ -1,15 +1,58 @@
 # BrainBoxWorld
 
-> BrainBoxWorld builds high-performance websites, AI systems, automation, and growth-focused digital experiences for ambitious brands.
+> BrainBoxWorld is a digital marketing and SEO agency that builds high-performance websites, AI systems, automation, and growth-focused digital experiences for ambitious brands worldwide. We serve clients from Nigeria, the United Kingdom, and the United States, and work remotely with businesses in every region.
+
+## About
+
+BrainBoxWorld helps businesses rank on the first page of Google, grow qualified organic traffic, and convert that traffic into revenue. We combine SEO, custom web development, AI, automation, and paid media into a single growth system.
+
+- Founded and led by Adam Bawa Aliyu.
+- 8+ years of experience across SEO, web development and growth marketing.
+- Global remote team, available 24/7.
+- Contact: hellobrainboxworld@gmail.com, info@brainboxworld.dedyn.io, +1 (331) 278-2900.
+- Ecosystem: BrainBoxWorld Nigeria (Africa), BrainBoxWorld UK (Europe), VANTIQ Creative (USA).
+
+## Services
+
+- Search Engine Optimization (SEO) — technical SEO, on-page SEO, content SEO, link building, local SEO, ecommerce SEO, international SEO.
+- Web design and custom web development — Next.js, TanStack, React, Shopify, WordPress, Webflow, Framer.
+- Conversion Rate Optimization (CRO) and landing page design.
+- Paid media — Google Ads, Meta Ads, TikTok Ads, LinkedIn Ads, YouTube Ads.
+- Content marketing and content management.
+- Branding, identity and creative direction.
+- AI systems — custom GPTs, RAG assistants, AI product videos, AI commercials, AI social content.
+- Automation — Zapier, Make, n8n, custom workflows, CRM automation, lead routing.
+- Analytics, tracking and reporting — GA4, GTM, server-side tracking, dashboards.
+
+## Industries we serve
+
+Ecommerce, SaaS, professional services, real estate, fintech, education, healthcare, hospitality, creators and personal brands.
 
 ## Pages
 
-- [Home](/): Overview of BrainBoxWorld services — web, AI, automation, and growth.
-- [About](/about): Who we are and how we work.
-- [Experience](/experience): Track record of SEO, traffic, and conversion results.
-- [Portfolio](/portfolio): Selected client projects and live websites.
-- [Case Studies](/case-studies): Detailed before/after results from client work.
-- [Packages](/packages): Service tiers and pricing.
-- [Blog](/blog): Strategic insights on SEO, conversion, and growth.
-- [Audit](/audit): Request a free Growth Foundations Audit.
+- [Home](/): Overview of BrainBoxWorld services — web, SEO, AI, automation, and growth.
+- [About](/about): Who we are, how we work, and our philosophy.
+- [Case Studies](/case-studies): Detailed before/after results and track record from client work.
+- [Portfolio](/portfolio): Selected client projects and the BrainBoxWorld ecosystem (Nigeria, UK, USA).
+- [Packages](/packages): Service tiers and pricing for SEO, web, and growth engagements.
+- [Blog](/blog): Strategic insights on SEO, conversion, AI, and growth.
+- [Audit](/audit): Request a free Growth Foundations Audit for your website.
 - [Contact](/contact): Get in touch to start a project.
+
+## Key blog articles
+
+- [How to Evaluate eCommerce SEO Agencies](/blog/how-to-evaluate-ecommerce-seo-agencies): Buyer's guide for choosing an SEO partner for online stores.
+
+## Contact
+
+- Email: hellobrainboxworld@gmail.com
+- Support email: info@brainboxworld.dedyn.io
+- Phone / WhatsApp: +1 (331) 278-2900
+- Website: https://thebrainboxworld.lovable.app
+- Availability: Remote worldwide, 24/7.
+
+## Optional
+
+- [Sitemap](/sitemap.xml)
+- [Robots](/robots.txt)
+- [Full LLM corpus](/llms-full.txt)
