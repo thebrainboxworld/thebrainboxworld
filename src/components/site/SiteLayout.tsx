@@ -7,18 +7,14 @@ import { useEffect, useState } from "react";
 import logo from "@/assets/logo.png";
 import { useScrollReveal } from "@/hooks/use-reveal";
 
-export const WHATSAPP_NUMBER = "13312782900";
-export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
-export const CALENDLY_LINK = "https://calendly.com/brainboxworld/30min";
-export const CONTACT_EMAIL = "info@brainboxworld.dedyn.io";
+// Business details live in one editable place — src/lib/site-config.ts
+export const WHATSAPP_NUMBER = CONTACT.whatsappNumber;
+export const WHATSAPP_LINK = WHATSAPP_URL;
+export const CALENDLY_LINK = CONTACT.calendly;
+export const CONTACT_EMAIL = CONTACT.email;
+export const CONTACT_PHONE = CONTACT.phoneDisplay;
 
-export const SOCIALS = {
-  linkedin: "https://www.linkedin.com/in/adam-bawa-aliyu-8463a93b2",
-  facebook: "https://www.facebook.com/bawaaliyuadams",
-  tiktok: "https://www.tiktok.com/@brainboxworld",
-  instagram: "https://www.instagram.com/brainboxproworld?igsh=aTNlNDNoaTkweXMx",
-  x: "https://x.com/Brainboxworld",
-};
+export const SOCIALS = SOCIAL_LINKS;
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
