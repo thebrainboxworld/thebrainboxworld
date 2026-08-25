@@ -6,6 +6,7 @@ import {
 import { useEffect, useState } from "react";
 import logo from "@/assets/logo.png";
 import { useScrollReveal } from "@/hooks/use-reveal";
+import { BRAND, CONTACT, SOCIAL_LINKS, WHATSAPP_URL } from "@/lib/site-config";
 
 // Business details live in one editable place — src/lib/site-config.ts
 export const WHATSAPP_NUMBER = CONTACT.whatsappNumber;
