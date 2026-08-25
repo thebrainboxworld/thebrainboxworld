@@ -134,12 +134,17 @@ function Header() {
             href={CALENDLY_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-3 group relative inline-flex items-center gap-2 btn-premium text-sm font-semibold px-5 py-2.5 rounded-full"
+            className="ml-2 inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/15 hover:border-white/40 text-sm font-medium text-slate-200 hover:text-white transition-colors"
           >
-            <CalendarCheck className="w-4 h-4" />
-            Book a 30-min Call
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+            <CalendarCheck className="w-4 h-4" /> Book a Strategy Call
           </a>
+          <Link
+            to="/audit"
+            className="ml-2 group relative inline-flex items-center gap-2 btn-premium text-sm font-semibold px-5 py-2.5 rounded-full"
+          >
+            Get Free Audit
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+          </Link>
         </nav>
 
         <button
