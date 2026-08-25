@@ -209,54 +209,58 @@ function Footer() {
               BRAIN<span className="text-gradient">BOXWORLD</span>
             </span>
           </div>
-          <p className="text-sm leading-relaxed text-slate-400 max-w-sm">
-            Your trusted partner for modern digital solutions — websites, AI, automation, and growth systems engineered to scale.
-          </p>
+          <p className="text-sm leading-relaxed text-slate-400 max-w-sm">{BRAND.description}</p>
+          <p className="mt-3 text-xs leading-relaxed text-slate-500 max-w-sm">{BRAND.reach}</p>
           <div className="mt-6"><SocialLinks variant="footer" /></div>
         </div>
 
         <div className="lg:col-span-2">
-          <h3 className="text-white font-semibold mb-4 text-sm tracking-wider">EXPLORE</h3>
+          <h3 className="text-white font-semibold mb-4 text-sm tracking-wider">SERVICES</h3>
           <ul className="space-y-2.5 text-sm text-slate-400">
-            <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
-            <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
-            <li><Link to="/portfolio" className="hover:text-white transition-colors">Portfolio</Link></li>
-            <li><Link to="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
-            <li><Link to="/blog" className="hover:text-white transition-colors">Insights</Link></li>
+            <li><Link to="/services/$slug" params={{ slug: "ecommerce" }} className="hover:text-white transition-colors">E-commerce</Link></li>
+            <li><Link to="/services/$slug" params={{ slug: "web-development" }} className="hover:text-white transition-colors">Web &amp; SaaS</Link></li>
+            <li><Link to="/services/$slug" params={{ slug: "ai-automation" }} className="hover:text-white transition-colors">AI &amp; Automation</Link></li>
+            <li><Link to="/services/$slug" params={{ slug: "digital-growth" }} className="hover:text-white transition-colors">Digital Growth</Link></li>
+            <li><Link to="/packages" className="hover:text-white transition-colors">Pricing</Link></li>
           </ul>
         </div>
 
         <div className="lg:col-span-2">
           <h3 className="text-white font-semibold mb-4 text-sm tracking-wider">COMPANY</h3>
           <ul className="space-y-2.5 text-sm text-slate-400">
-            <li><Link to="/packages" className="hover:text-white transition-colors">Pricing</Link></li>
-            <li><Link to="/audit" className="hover:text-white transition-colors">Free Audit</Link></li>
+            <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
+            <li><Link to="/portfolio" className="hover:text-white transition-colors">Work</Link></li>
+            <li><Link to="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
             <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-            <li><a href={CALENDLY_LINK} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Book a Call</a></li>
+          </ul>
+          <h3 className="text-white font-semibold mt-6 mb-4 text-sm tracking-wider">RESOURCES</h3>
+          <ul className="space-y-2.5 text-sm text-slate-400">
+            <li><Link to="/blog" className="hover:text-white transition-colors">Insights</Link></li>
+            <li><Link to="/audit" className="hover:text-white transition-colors">Free Website Audit</Link></li>
           </ul>
         </div>
 
         <div className="lg:col-span-4">
           <h3 className="text-white font-semibold mb-4 text-sm tracking-wider">GET IN TOUCH</h3>
           <ul className="space-y-3 text-sm text-slate-300">
-            <li className="flex items-center gap-3"><Phone className="w-4 h-4 text-indigo-400" /><a href={WHATSAPP_LINK} className="hover:text-white">+1 (331) 278-2900</a></li>
             <li className="flex items-center gap-3"><Mail className="w-4 h-4 text-indigo-400" /><a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-white">{CONTACT_EMAIL}</a></li>
-            <li className="flex items-center gap-3"><MapPin className="w-4 h-4 text-indigo-400" /><span>Remote · Global</span></li>
-            <li className="flex items-center gap-3"><Clock className="w-4 h-4 text-indigo-400" /><span>Available 24/7</span></li>
+            <li className="flex items-center gap-3"><Phone className="w-4 h-4 text-indigo-400" /><a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="hover:text-white">WhatsApp — {CONTACT.phoneDisplay}</a></li>
+            <li className="flex items-center gap-3"><MapPin className="w-4 h-4 text-indigo-400" /><span>{CONTACT.location}</span></li>
+            <li className="flex items-center gap-3"><Clock className="w-4 h-4 text-indigo-400" /><span>{CONTACT.availability}</span></li>
           </ul>
-          <a
-            href={CALENDLY_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 btn-premium text-sm font-semibold px-5 py-3 rounded-full"
-          >
-            <Sparkles className="w-4 h-4" /> Book a Strategy Call
-          </a>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link to="/audit" className="inline-flex items-center gap-2 btn-premium text-sm font-semibold px-5 py-3 rounded-full">
+              <Sparkles className="w-4 h-4" /> Get a Free Website Audit
+            </Link>
+          </div>
         </div>
       </div>
 
-      <div className="relative border-t border-white/10 py-5 text-center text-xs text-slate-500">
-        © {new Date().getFullYear()} BrainBoxWorld. Crafted with precision. All rights reserved.
+      <div className="relative border-t border-white/10 py-5 px-4 flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-2 text-center text-xs text-slate-500">
+        <span>© {new Date().getFullYear()} BrainBoxWorld. All rights reserved.</span>
+        <span className="hidden sm:inline">·</span>
+        <Link to="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
+        <Link to="/terms" className="hover:text-slate-300 transition-colors">Terms</Link>
       </div>
     </footer>
   );
