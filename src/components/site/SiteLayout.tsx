@@ -6,19 +6,16 @@ import {
 import { useEffect, useState } from "react";
 import logo from "@/assets/logo.png";
 import { useScrollReveal } from "@/hooks/use-reveal";
+import { BRAND, CONTACT, SOCIAL_LINKS, WHATSAPP_URL } from "@/lib/site-config";
 
-export const WHATSAPP_NUMBER = "13312782900";
-export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
-export const CALENDLY_LINK = "https://calendly.com/brainboxworld/30min";
-export const CONTACT_EMAIL = "info@brainboxworld.dedyn.io";
+// Business details live in one editable place — src/lib/site-config.ts
+export const WHATSAPP_NUMBER = CONTACT.whatsappNumber;
+export const WHATSAPP_LINK = WHATSAPP_URL;
+export const CALENDLY_LINK = CONTACT.calendly;
+export const CONTACT_EMAIL = CONTACT.email;
+export const CONTACT_PHONE = CONTACT.phoneDisplay;
 
-export const SOCIALS = {
-  linkedin: "https://www.linkedin.com/in/adam-bawa-aliyu-8463a93b2",
-  facebook: "https://www.facebook.com/bawaaliyuadams",
-  tiktok: "https://www.tiktok.com/@brainboxworld",
-  instagram: "https://www.instagram.com/brainboxproworld?igsh=aTNlNDNoaTkweXMx",
-  x: "https://x.com/Brainboxworld",
-};
+export const SOCIALS = SOCIAL_LINKS;
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -50,26 +47,23 @@ export const SocialLinks = ({ variant = "default" }: { variant?: "default" | "fo
 };
 
 const desktopNavItems = [
-  { label: "About", to: "/", hash: undefined as string | undefined },
-  { label: "Services", to: "/", hash: "services" },
-  { label: "Portfolio", to: "/portfolio", hash: undefined },
-  { label: "Case Studies", to: "/case-studies", hash: undefined },
-  { label: "Pricing", to: "/packages", hash: undefined },
+  { label: "Home", to: "/", hash: undefined as string | undefined },
+  { label: "Services", to: "/services", hash: undefined },
+  { label: "Work", to: "/portfolio", hash: undefined },
+  { label: "About", to: "/about", hash: undefined },
   { label: "Insights", to: "/blog", hash: undefined },
   { label: "Contact", to: "/contact", hash: undefined },
 ];
 
 const mobileNavItems = [
-  { label: "HOME", to: "/", hash: undefined as string | undefined },
-  { label: "ABOUT", to: "/about", hash: undefined },
-  { label: "SERVICES", to: "/", hash: "services" },
-  { label: "PORTFOLIO", to: "/portfolio", hash: undefined },
-  { label: "CASE STUDIES", to: "/case-studies", hash: undefined },
-  { label: "TESTIMONIALS", to: "/", hash: "testimonials" },
-  { label: "PRICING", to: "/packages", hash: undefined },
-  { label: "INSIGHTS", to: "/blog", hash: undefined },
-  { label: "AUDIT", to: "/audit", hash: undefined },
-  { label: "CONTACT", to: "/contact", hash: undefined },
+  { label: "Home", to: "/", hash: undefined as string | undefined },
+  { label: "Services", to: "/services", hash: undefined },
+  { label: "Work", to: "/portfolio", hash: undefined },
+  { label: "Case Studies", to: "/case-studies", hash: undefined },
+  { label: "About", to: "/about", hash: undefined },
+  { label: "Pricing", to: "/packages", hash: undefined },
+  { label: "Insights", to: "/blog", hash: undefined },
+  { label: "Contact", to: "/contact", hash: undefined },
 ];
 
 function TopBar() {
@@ -77,7 +71,7 @@ function TopBar() {
     <div className="hidden md:block bg-[#0a0a1a] text-slate-400 text-xs border-b border-white/5">
       <div className="w-full px-4 md:px-6 py-2 flex justify-between items-center gap-4">
         <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-indigo-300 transition-colors">
-          <Phone className="w-3.5 h-3.5" /><span>+1 (331) 278-2900</span>
+          <Phone className="w-3.5 h-3.5" /><span>{CONTACT.phoneDisplay}</span>
         </a>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
           <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-2 hover:text-indigo-300 transition-colors">
@@ -140,12 +134,17 @@ function Header() {
             href={CALENDLY_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-3 group relative inline-flex items-center gap-2 btn-premium text-sm font-semibold px-5 py-2.5 rounded-full"
+            className="ml-2 inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/15 hover:border-white/40 text-sm font-medium text-slate-200 hover:text-white transition-colors"
           >
-            <CalendarCheck className="w-4 h-4" />
-            Book a 30-min Call
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+            <CalendarCheck className="w-4 h-4" /> Book a Strategy Call
           </a>
+          <Link
+            to="/audit"
+            className="ml-2 group relative inline-flex items-center gap-2 btn-premium text-sm font-semibold px-5 py-2.5 rounded-full"
+          >
+            Get Free Audit
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+          </Link>
         </nav>
 
         <button
@@ -171,14 +170,21 @@ function Header() {
                 {item.label}
               </Link>
             ))}
+            <Link
+              to="/audit"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-flex justify-center items-center gap-2 btn-premium text-sm font-semibold px-4 py-3 rounded-full"
+            >
+              Get a Free Website Audit
+            </Link>
             <a
               href={CALENDLY_LINK}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="mt-3 inline-flex justify-center items-center gap-2 btn-premium text-sm font-semibold px-4 py-3 rounded-full"
+              className="mt-2 inline-flex justify-center items-center gap-2 px-4 py-3 rounded-full border border-white/15 text-sm font-medium text-slate-200"
             >
-              <CalendarCheck className="w-4 h-4" /> Book a 30-min Call
+              <CalendarCheck className="w-4 h-4" /> Book a Strategy Call
             </a>
           </div>
         </nav>
@@ -203,54 +209,58 @@ function Footer() {
               BRAIN<span className="text-gradient">BOXWORLD</span>
             </span>
           </div>
-          <p className="text-sm leading-relaxed text-slate-400 max-w-sm">
-            Your trusted partner for modern digital solutions — websites, AI, automation, and growth systems engineered to scale.
-          </p>
+          <p className="text-sm leading-relaxed text-slate-400 max-w-sm">{BRAND.description}</p>
+          <p className="mt-3 text-xs leading-relaxed text-slate-500 max-w-sm">{BRAND.reach}</p>
           <div className="mt-6"><SocialLinks variant="footer" /></div>
         </div>
 
         <div className="lg:col-span-2">
-          <h3 className="text-white font-semibold mb-4 text-sm tracking-wider">EXPLORE</h3>
+          <h3 className="text-white font-semibold mb-4 text-sm tracking-wider">SERVICES</h3>
           <ul className="space-y-2.5 text-sm text-slate-400">
-            <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
-            <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
-            <li><Link to="/portfolio" className="hover:text-white transition-colors">Portfolio</Link></li>
-            <li><Link to="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
-            <li><Link to="/blog" className="hover:text-white transition-colors">Insights</Link></li>
+            <li><Link to="/services/$slug" params={{ slug: "ecommerce" }} className="hover:text-white transition-colors">E-commerce</Link></li>
+            <li><Link to="/services/$slug" params={{ slug: "web-development" }} className="hover:text-white transition-colors">Web &amp; SaaS</Link></li>
+            <li><Link to="/services/$slug" params={{ slug: "ai-automation" }} className="hover:text-white transition-colors">AI &amp; Automation</Link></li>
+            <li><Link to="/services/$slug" params={{ slug: "digital-growth" }} className="hover:text-white transition-colors">Digital Growth</Link></li>
+            <li><Link to="/packages" className="hover:text-white transition-colors">Pricing</Link></li>
           </ul>
         </div>
 
         <div className="lg:col-span-2">
           <h3 className="text-white font-semibold mb-4 text-sm tracking-wider">COMPANY</h3>
           <ul className="space-y-2.5 text-sm text-slate-400">
-            <li><Link to="/packages" className="hover:text-white transition-colors">Pricing</Link></li>
-            <li><Link to="/audit" className="hover:text-white transition-colors">Free Audit</Link></li>
+            <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
+            <li><Link to="/portfolio" className="hover:text-white transition-colors">Work</Link></li>
+            <li><Link to="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
             <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-            <li><a href={CALENDLY_LINK} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Book a Call</a></li>
+          </ul>
+          <h3 className="text-white font-semibold mt-6 mb-4 text-sm tracking-wider">RESOURCES</h3>
+          <ul className="space-y-2.5 text-sm text-slate-400">
+            <li><Link to="/blog" className="hover:text-white transition-colors">Insights</Link></li>
+            <li><Link to="/audit" className="hover:text-white transition-colors">Free Website Audit</Link></li>
           </ul>
         </div>
 
         <div className="lg:col-span-4">
           <h3 className="text-white font-semibold mb-4 text-sm tracking-wider">GET IN TOUCH</h3>
           <ul className="space-y-3 text-sm text-slate-300">
-            <li className="flex items-center gap-3"><Phone className="w-4 h-4 text-indigo-400" /><a href={WHATSAPP_LINK} className="hover:text-white">+1 (331) 278-2900</a></li>
             <li className="flex items-center gap-3"><Mail className="w-4 h-4 text-indigo-400" /><a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-white">{CONTACT_EMAIL}</a></li>
-            <li className="flex items-center gap-3"><MapPin className="w-4 h-4 text-indigo-400" /><span>Remote · Global</span></li>
-            <li className="flex items-center gap-3"><Clock className="w-4 h-4 text-indigo-400" /><span>Available 24/7</span></li>
+            <li className="flex items-center gap-3"><Phone className="w-4 h-4 text-indigo-400" /><a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="hover:text-white">WhatsApp — {CONTACT.phoneDisplay}</a></li>
+            <li className="flex items-center gap-3"><MapPin className="w-4 h-4 text-indigo-400" /><span>{CONTACT.location}</span></li>
+            <li className="flex items-center gap-3"><Clock className="w-4 h-4 text-indigo-400" /><span>{CONTACT.availability}</span></li>
           </ul>
-          <a
-            href={CALENDLY_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 btn-premium text-sm font-semibold px-5 py-3 rounded-full"
-          >
-            <Sparkles className="w-4 h-4" /> Book a Strategy Call
-          </a>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link to="/audit" className="inline-flex items-center gap-2 btn-premium text-sm font-semibold px-5 py-3 rounded-full">
+              <Sparkles className="w-4 h-4" /> Get a Free Website Audit
+            </Link>
+          </div>
         </div>
       </div>
 
-      <div className="relative border-t border-white/10 py-5 text-center text-xs text-slate-500">
-        © {new Date().getFullYear()} BrainBoxWorld. Crafted with precision. All rights reserved.
+      <div className="relative border-t border-white/10 py-5 px-4 flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-2 text-center text-xs text-slate-500">
+        <span>© {new Date().getFullYear()} BrainBoxWorld. All rights reserved.</span>
+        <span className="hidden sm:inline">·</span>
+        <Link to="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
+        <Link to="/terms" className="hover:text-slate-300 transition-colors">Terms</Link>
       </div>
     </footer>
   );
