@@ -47,26 +47,23 @@ export const SocialLinks = ({ variant = "default" }: { variant?: "default" | "fo
 };
 
 const desktopNavItems = [
-  { label: "About", to: "/", hash: undefined as string | undefined },
-  { label: "Services", to: "/", hash: "services" },
-  { label: "Portfolio", to: "/portfolio", hash: undefined },
-  { label: "Case Studies", to: "/case-studies", hash: undefined },
-  { label: "Pricing", to: "/packages", hash: undefined },
+  { label: "Home", to: "/", hash: undefined as string | undefined },
+  { label: "Services", to: "/services", hash: undefined },
+  { label: "Work", to: "/portfolio", hash: undefined },
+  { label: "About", to: "/about", hash: undefined },
   { label: "Insights", to: "/blog", hash: undefined },
   { label: "Contact", to: "/contact", hash: undefined },
 ];
 
 const mobileNavItems = [
-  { label: "HOME", to: "/", hash: undefined as string | undefined },
-  { label: "ABOUT", to: "/about", hash: undefined },
-  { label: "SERVICES", to: "/", hash: "services" },
-  { label: "PORTFOLIO", to: "/portfolio", hash: undefined },
-  { label: "CASE STUDIES", to: "/case-studies", hash: undefined },
-  { label: "TESTIMONIALS", to: "/", hash: "testimonials" },
-  { label: "PRICING", to: "/packages", hash: undefined },
-  { label: "INSIGHTS", to: "/blog", hash: undefined },
-  { label: "AUDIT", to: "/audit", hash: undefined },
-  { label: "CONTACT", to: "/contact", hash: undefined },
+  { label: "Home", to: "/", hash: undefined as string | undefined },
+  { label: "Services", to: "/services", hash: undefined },
+  { label: "Work", to: "/portfolio", hash: undefined },
+  { label: "Case Studies", to: "/case-studies", hash: undefined },
+  { label: "About", to: "/about", hash: undefined },
+  { label: "Pricing", to: "/packages", hash: undefined },
+  { label: "Insights", to: "/blog", hash: undefined },
+  { label: "Contact", to: "/contact", hash: undefined },
 ];
 
 function TopBar() {
