@@ -170,14 +170,21 @@ function Header() {
                 {item.label}
               </Link>
             ))}
+            <Link
+              to="/audit"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-flex justify-center items-center gap-2 btn-premium text-sm font-semibold px-4 py-3 rounded-full"
+            >
+              Get a Free Website Audit
+            </Link>
             <a
               href={CALENDLY_LINK}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="mt-3 inline-flex justify-center items-center gap-2 btn-premium text-sm font-semibold px-4 py-3 rounded-full"
+              className="mt-2 inline-flex justify-center items-center gap-2 px-4 py-3 rounded-full border border-white/15 text-sm font-medium text-slate-200"
             >
-              <CalendarCheck className="w-4 h-4" /> Book a 30-min Call
+              <CalendarCheck className="w-4 h-4" /> Book a Strategy Call
             </a>
           </div>
         </nav>
