@@ -347,27 +347,34 @@ function HomePage() {
             title={<>Services engineered for <span className="text-gradient">growth</span></>}
             subtitle="A complete digital partner — from brand and product design to engineering, AI, and growth systems."
           />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((s, i) => (
-              <div key={s.title} className="group grad-border p-7 hover-lift reveal" style={{ transitionDelay: `${i * 60}ms` }}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/30 to-violet-500/30 border border-white/10 flex items-center justify-center">
-                    <s.icon className="w-6 h-6 text-indigo-300" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+            {SERVICES.map((s, i) => {
+              const Icon = SERVICE_ICONS[s.slug];
+              return (
+                <div key={s.slug} className="group grad-border p-7 hover-lift reveal" style={{ transitionDelay: `${i * 60}ms` }}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/30 to-violet-500/30 border border-white/10 flex items-center justify-center">
+                      <Icon className="w-6 h-6 text-indigo-300" />
+                    </div>
+                    <div>
+                      <div className="text-[11px] tracking-widest text-indigo-300/70">{s.number}</div>
+                      <h3 className="font-semibold text-lg text-white font-display">{s.name}</h3>
+                    </div>
                   </div>
-                  <h3 className="font-semibold text-lg text-white font-display">{s.title}</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-4">{s.summary}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {s.included.slice(0, 6).map((it) => (
+                      <span key={it} className="text-[11px] px-2 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">{it}</span>
+                    ))}
+                  </div>
+                  <Link to="/services/$slug" params={{ slug: s.slug }} className="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-300 hover:text-indigo-200 story-link">
+                    {s.cardCta} <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                 </div>
-                <p className="text-sm text-slate-400 leading-relaxed mb-4">{s.desc}</p>
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {s.items.map((it) => (
-                    <span key={it} className="text-[11px] px-2 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">{it}</span>
-                  ))}
-                </div>
-                <a href={CALENDLY_LINK} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-300 hover:text-indigo-200 story-link">
-                  Discuss your project <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            ))}
+              );
+            })}
           </div>
+
         </div>
       </section>
 
