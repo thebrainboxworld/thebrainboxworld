@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as McpRouteImport } from './routes/mcp'
@@ -47,6 +48,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   id: '/robots.txt',
   path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortfolioRoute = PortfolioRouteImport.update({
@@ -170,6 +176,7 @@ export interface FileRoutesByFullPath {
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRoute
+  '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -195,6 +202,7 @@ export interface FileRoutesByTo {
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRoute
+  '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -221,6 +229,7 @@ export interface FileRoutesById {
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
   '/portfolio': typeof PortfolioRoute
+  '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -249,6 +258,7 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/packages'
     | '/portfolio'
+    | '/privacy'
     | '/robots.txt'
     | '/services'
     | '/sitemap.xml'
@@ -274,6 +284,7 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/packages'
     | '/portfolio'
+    | '/privacy'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/.mcp/list-tools'
@@ -299,6 +310,7 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/packages'
     | '/portfolio'
+    | '/privacy'
     | '/robots.txt'
     | '/services'
     | '/sitemap.xml'
@@ -326,6 +338,7 @@ export interface RootRouteChildren {
   McpRoute: typeof McpRoute
   PackagesRoute: typeof PackagesRoute
   PortfolioRoute: typeof PortfolioRoute
+  PrivacyRoute: typeof PrivacyRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   ServicesRoute: typeof ServicesRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -358,6 +371,13 @@ declare module '@tanstack/react-router' {
       path: '/robots.txt'
       fullPath: '/robots.txt'
       preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portfolio': {
@@ -548,6 +568,7 @@ const rootRouteChildren: RootRouteChildren = {
   McpRoute: McpRoute,
   PackagesRoute: PackagesRoute,
   PortfolioRoute: PortfolioRoute,
+  PrivacyRoute: PrivacyRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   ServicesRoute: ServicesRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
