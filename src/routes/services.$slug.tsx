@@ -105,7 +105,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 function ServicePage() {
   const { service: s } = Route.useLoaderData();
-  const related = caseStudies.slice(0, 3);
+  const related = clientProjects.slice(0, 3);
   const others = SERVICES.filter((x) => x.slug !== s.slug);
 
   return (
