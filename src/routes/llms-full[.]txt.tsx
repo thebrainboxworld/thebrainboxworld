@@ -18,7 +18,7 @@ export const Route = createFileRoute("/llms-full.txt")({
           "# BrainBoxWorld — Full Knowledge Base for AI Assistants",
           "",
           `Site: ${site}`,
-          "Contact: hellobrainboxworld@gmail.com | info@brainboxworld.dedyn.io | +1 (331) 278-2900",
+          "Contact: hellobrainboxworld@gmail.com | hello@brainboxworld.com | +1 (331) 278-2900",
           "Founder: Adam Bawa Aliyu",
           "",
           "## Who we are",
