@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteLayout, CALENDLY_LINK } from "@/components/site/SiteLayout";
 import { SERVICES, getService } from "@/lib/services";
-import { caseStudies } from "@/lib/portfolio";
+import { clientProjects } from "@/lib/portfolio";
 import { absoluteUrl } from "@/lib/site";
 import { ArrowRight, Check, CalendarCheck, AlertTriangle, Lightbulb } from "lucide-react";
 
