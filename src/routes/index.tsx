@@ -439,34 +439,31 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ====================== TESTIMONIALS ====================== */}
-      <section id="testimonials" className="relative py-12 px-4 scroll-mt-12 bg-gradient-to-b from-transparent via-indigo-950/20 to-transparent">
-        <div className="max-w-[1400px] mx-auto">
-          <SectionHeading
-            label="CLIENT STORIES"
-            title={<>Trusted by founders, <span className="text-gradient">loved by teams</span></>}
-          />
-          <div className="grid md:grid-cols-2 gap-6">
-            {testimonials.map((t, i) => (
-              <div key={i} className="grad-border p-7 hover-lift reveal" style={{ transitionDelay: `${i * 80}ms` }}>
-                <Quote className="w-8 h-8 text-indigo-400/60 mb-3" />
-                <p className="text-slate-200 leading-relaxed">"{t.quote}"</p>
-                <div className="mt-5 flex items-center justify-between">
-                  <div>
-                    <div className="font-semibold text-white">{t.author}</div>
-                    <div className="text-xs text-slate-400">{t.role}</div>
-                  </div>
-                  <div className="flex gap-0.5">
-                    {Array.from({ length: t.rating }).map((_, k) => (
-                      <Star key={k} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    ))}
+      {/* ====================== TESTIMONIALS (verified only) ====================== */}
+      {TESTIMONIALS.length > 0 && (
+        <section id="testimonials" className="relative py-12 px-4 scroll-mt-12 bg-gradient-to-b from-transparent via-indigo-950/20 to-transparent">
+          <div className="max-w-[1400px] mx-auto">
+            <SectionHeading
+              label="CLIENT STORIES"
+              title={<>What clients <span className="text-gradient">actually say</span></>}
+            />
+            <div className="grid md:grid-cols-2 gap-6">
+              {TESTIMONIALS.map((t, i) => (
+                <div key={i} className="grad-border p-7 hover-lift reveal" style={{ transitionDelay: `${i * 80}ms` }}>
+                  <Quote className="w-8 h-8 text-indigo-400/60 mb-3" />
+                  <p className="text-slate-200 leading-relaxed">"{t.quote}"</p>
+                  <div className="mt-5">
+                    <div className="font-semibold text-white">{t.name}</div>
+                    <div className="text-xs text-slate-400">{[t.role, t.company].filter(Boolean).join(" · ")}</div>
+                    {t.result && <div className="mt-2 text-xs text-emerald-400">{t.result}</div>}
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
 
       {/* ====================== INSIGHTS ====================== */}
       <section className="relative py-12 px-4">
