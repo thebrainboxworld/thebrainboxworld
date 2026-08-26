@@ -161,7 +161,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             {
               "@type": "ContactPoint",
               contactType: "sales",
-              email: "info@brainboxworld.dedyn.io",
+              email: "hello@brainboxworld.com",
               areaServed: "Worldwide",
               availableLanguage: ["English"],
             },

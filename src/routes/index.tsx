@@ -3,11 +3,12 @@ import { SiteLayout, CALENDLY_LINK, WHATSAPP_LINK } from "@/components/site/Site
 import { PlatformWall } from "@/components/site/PlatformWall";
 import { ClientResults } from "@/components/site/ClientResults";
 import { ecosystemProjects } from "@/lib/portfolio";
+import { SERVICES } from "@/lib/services";
+import { BRAND, VERIFIED_STATS, TESTIMONIALS } from "@/lib/site-config";
 import { absoluteUrl } from "@/lib/site";
-import { useEffect, useRef, useState } from "react";
 import {
-  Code2, Palette, ShoppingCart, BrainCog, TrendingUp, Smartphone, Headphones,
-  Sparkles, ArrowRight, ArrowUpRight, Check, Star, Quote, CalendarCheck,
+  Code2, ShoppingCart, BrainCog, TrendingUp,
+  Sparkles, ArrowRight, ArrowUpRight, Check, Quote, CalendarCheck,
   Rocket, Target, Layers, LineChart, ShieldCheck, Zap, Globe2, MessageSquare,
 } from "lucide-react";
 
@@ -16,10 +17,12 @@ export const Route = createFileRoute("/")({
     const url = absoluteUrl("/");
     return {
       meta: [
-        { title: "BrainBoxWorld — Digital Solutions, AI & Automation" },
-        { name: "description", content: "BrainBoxWorld builds high-performance websites, AI systems, automation, and growth-focused digital experiences. Book a 30-minute strategy call." },
-        { property: "og:title", content: "BrainBoxWorld — Modern Digital Solutions" },
-        { property: "og:description", content: "Websites, apps, AI, automation, and growth systems that scale. Book a 30-minute strategy call." },
+        { title: "BrainBoxWorld — E-commerce, Web, AI & Digital Growth" },
+        { name: "description", content: BRAND.description },
+        { property: "og:title", content: "BrainBoxWorld — Digital Solutions That Grow Your Business" },
+        { property: "og:description", content: BRAND.intro },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
         { property: "og:url", content: url },
       ],
       links: [{ rel: "canonical", href: url }],
@@ -30,15 +33,12 @@ export const Route = createFileRoute("/")({
 
 /* ----------------------------- DATA ----------------------------- */
 
-
-
-
-const stats = [
-  { value: 250, suffix: "+", label: "Projects Delivered" },
-  { value: 180, suffix: "%", label: "Avg. Growth Increase" },
-  { value: 25, suffix: "M+", prefix: "$", label: "Revenue Influenced" },
-  { value: 98, suffix: "%", label: "Client Satisfaction" },
-];
+const SERVICE_ICONS: Record<string, typeof Code2> = {
+  ecommerce: ShoppingCart,
+  "web-development": Code2,
+  "ai-automation": BrainCog,
+  "digital-growth": TrendingUp,
+};
 
 const whyUs = [
   { icon: Target, title: "Conversion-Focused Design", desc: "Every pixel engineered to move visitors from interest to action." },
@@ -49,54 +49,6 @@ const whyUs = [
   { icon: ShieldCheck, title: "Future-Proof Tech", desc: "Modern stacks chosen for longevity, not hype cycles." },
   { icon: Rocket, title: "Automation-Driven Workflows", desc: "We replace manual work with elegant, observable pipelines." },
   { icon: Sparkles, title: "Modern User Experiences", desc: "Premium UX that earns trust in the first 3 seconds." },
-];
-
-const services = [
-  {
-    icon: Code2, title: "Web & Software Development",
-    items: ["Websites", "Custom Web Apps", "SaaS Platforms", "API Development", "Dashboards", "CMS"],
-    desc: "Full-stack engineering for sites, apps and platforms that scale.",
-  },
-  {
-    icon: Palette, title: "UI/UX & Branding",
-    items: ["Product Design", "Wireframes & Prototypes", "Brand Identity", "Motion Graphics"],
-    desc: "Design systems and brand experiences that look as good as they perform.",
-  },
-  {
-    icon: ShoppingCart, title: "E-Commerce & Business Systems",
-    items: ["Shopify", "WooCommerce", "Payments", "Checkout Optimization", "Store Optimization"],
-    desc: "Stores engineered for conversion, retention and revenue growth.",
-  },
-  {
-    icon: BrainCog, title: "AI & Automation",
-    items: ["AI Chatbots", "Workflow Automation", "CRM Integration", "AI Features", "Dashboards"],
-    desc: "Smart systems that automate operations and unlock new revenue.",
-  },
-  {
-    icon: TrendingUp, title: "Digital Growth",
-    items: ["SEO", "Technical SEO", "CRO", "Analytics", "Performance Optimization"],
-    desc: "Data-led growth engineering across acquisition, activation and retention.",
-  },
-  {
-    icon: Smartphone, title: "Mobile & Cloud",
-    items: ["Mobile Apps", "Firebase", "Cloud Deployment", "DevOps Setup"],
-    desc: "Native-grade mobile and resilient cloud infrastructure.",
-  },
-  {
-    icon: Headphones, title: "Support & Consulting",
-    items: ["Maintenance", "Redesign", "Hosting", "MVP Development", "Consultation"],
-    desc: "Ongoing care, advisory and rapid MVP launches for ambitious teams.",
-  },
-];
-
-
-
-
-const testimonials = [
-  { quote: "BrainBoxWorld didn't just optimize our site — they rebuilt our entire growth engine. Organic traffic doubled within 90 days.", author: "Sarah Chen", role: "Founder, Retrospec", rating: 5 },
-  { quote: "The strategic clarity they brought was unlike any agency we've worked with. Every decision was backed by data.", author: "Marcus Reyes", role: "CEO, Darn Tough", rating: 5 },
-  { quote: "They understood our positioning instantly. The new experience converts like nothing we had before.", author: "Amara Okafor", role: "Marketing Lead, Trnda", rating: 5 },
-  { quote: "Our revenue tripled after they rebuilt our SEO and product discovery system. The ROI has been extraordinary.", author: "James Whitaker", role: "Co-Founder, Benetek", rating: 5 },
 ];
 
 const workflow = [
@@ -117,33 +69,6 @@ const insights = [
 
 /* ----------------------------- HELPERS ----------------------------- */
 
-function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) {
-  const [n, setN] = useState(0);
-  const ref = useRef<HTMLSpanElement | null>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          const duration = 1800;
-          const start = performance.now();
-          const tick = (t: number) => {
-            const p = Math.min(1, (t - start) / duration);
-            const eased = 1 - Math.pow(1 - p, 3);
-            setN(Math.round(eased * value));
-            if (p < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-          io.disconnect();
-        }
-      });
-    }, { threshold: 0.4 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [value]);
-  return <span ref={ref}>{prefix}{n}{suffix}</span>;
-}
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -278,33 +203,34 @@ function HomePage() {
 
               <div className="absolute bottom-4 right-2 grad-border px-3 py-2 animate-float delay-200">
                 <div className="flex items-center gap-2 text-xs">
-                  <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-                  <span className="font-semibold text-white">4.9/5</span>
-                  <span className="text-slate-400">· 120+ reviews</span>
+                  <Globe2 className="w-3.5 h-3.5 text-indigo-300" />
+                  <span className="font-semibold text-white">Remote</span>
+                  <span className="text-slate-400">· clients worldwide</span>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </section>
 
-      {/* ====================== FLOATING STATS ====================== */}
-      <section className="relative -mt-6 md:-mt-10 px-4">
-        <div className="max-w-[1400px] mx-auto grad-border p-2 glow-soft reveal-zoom">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/5">
-            {stats.map((s, i) => (
-              <div key={s.label} className="p-6 md:p-8 text-center group">
-                <div className="text-3xl md:text-5xl font-bold font-display text-gradient">
-                  <AnimatedCounter value={s.value} prefix={s.prefix} suffix={s.suffix} />
+      {/* ====================== VERIFIED STATS (only real numbers) ====================== */}
+      {VERIFIED_STATS.length > 0 && (
+        <section className="relative -mt-6 md:-mt-10 px-4">
+          <div className="max-w-[1400px] mx-auto grad-border p-2 glow-soft reveal-zoom">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/5">
+              {VERIFIED_STATS.map((s) => (
+                <div key={s.label} className="p-6 md:p-8 text-center group">
+                  <div className="text-3xl md:text-5xl font-bold font-display text-gradient">{s.value}</div>
+                  <div className="mt-2 text-xs md:text-sm text-slate-400 tracking-wide uppercase">{s.label}</div>
+                  <div className="mt-3 h-0.5 w-10 mx-auto bg-gradient-to-r from-indigo-500 to-violet-400 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <div className="mt-2 text-xs md:text-sm text-slate-400 tracking-wide uppercase">{s.label}</div>
-                <div className="mt-3 h-0.5 w-10 mx-auto bg-gradient-to-r from-indigo-500 to-violet-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="sr-only">{i}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
 
       {/* ====================== PLATFORMS WE WORK WITH ====================== */}
       <section className="relative py-12 px-4">
@@ -347,27 +273,34 @@ function HomePage() {
             title={<>Services engineered for <span className="text-gradient">growth</span></>}
             subtitle="A complete digital partner — from brand and product design to engineering, AI, and growth systems."
           />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((s, i) => (
-              <div key={s.title} className="group grad-border p-7 hover-lift reveal" style={{ transitionDelay: `${i * 60}ms` }}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/30 to-violet-500/30 border border-white/10 flex items-center justify-center">
-                    <s.icon className="w-6 h-6 text-indigo-300" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+            {SERVICES.map((s, i) => {
+              const Icon = SERVICE_ICONS[s.slug];
+              return (
+                <div key={s.slug} className="group grad-border p-7 hover-lift reveal" style={{ transitionDelay: `${i * 60}ms` }}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/30 to-violet-500/30 border border-white/10 flex items-center justify-center">
+                      <Icon className="w-6 h-6 text-indigo-300" />
+                    </div>
+                    <div>
+                      <div className="text-[11px] tracking-widest text-indigo-300/70">{s.number}</div>
+                      <h3 className="font-semibold text-lg text-white font-display">{s.name}</h3>
+                    </div>
                   </div>
-                  <h3 className="font-semibold text-lg text-white font-display">{s.title}</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-4">{s.summary}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {s.included.slice(0, 6).map((it) => (
+                      <span key={it} className="text-[11px] px-2 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">{it}</span>
+                    ))}
+                  </div>
+                  <Link to="/services/$slug" params={{ slug: s.slug }} className="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-300 hover:text-indigo-200 story-link">
+                    {s.cardCta} <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                 </div>
-                <p className="text-sm text-slate-400 leading-relaxed mb-4">{s.desc}</p>
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {s.items.map((it) => (
-                    <span key={it} className="text-[11px] px-2 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">{it}</span>
-                  ))}
-                </div>
-                <a href={CALENDLY_LINK} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-300 hover:text-indigo-200 story-link">
-                  Discuss your project <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            ))}
+              );
+            })}
           </div>
+
         </div>
       </section>
 
@@ -439,34 +372,31 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ====================== TESTIMONIALS ====================== */}
-      <section id="testimonials" className="relative py-12 px-4 scroll-mt-12 bg-gradient-to-b from-transparent via-indigo-950/20 to-transparent">
-        <div className="max-w-[1400px] mx-auto">
-          <SectionHeading
-            label="CLIENT STORIES"
-            title={<>Trusted by founders, <span className="text-gradient">loved by teams</span></>}
-          />
-          <div className="grid md:grid-cols-2 gap-6">
-            {testimonials.map((t, i) => (
-              <div key={i} className="grad-border p-7 hover-lift reveal" style={{ transitionDelay: `${i * 80}ms` }}>
-                <Quote className="w-8 h-8 text-indigo-400/60 mb-3" />
-                <p className="text-slate-200 leading-relaxed">"{t.quote}"</p>
-                <div className="mt-5 flex items-center justify-between">
-                  <div>
-                    <div className="font-semibold text-white">{t.author}</div>
-                    <div className="text-xs text-slate-400">{t.role}</div>
-                  </div>
-                  <div className="flex gap-0.5">
-                    {Array.from({ length: t.rating }).map((_, k) => (
-                      <Star key={k} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    ))}
+      {/* ====================== TESTIMONIALS (verified only) ====================== */}
+      {TESTIMONIALS.length > 0 && (
+        <section id="testimonials" className="relative py-12 px-4 scroll-mt-12 bg-gradient-to-b from-transparent via-indigo-950/20 to-transparent">
+          <div className="max-w-[1400px] mx-auto">
+            <SectionHeading
+              label="CLIENT STORIES"
+              title={<>What clients <span className="text-gradient">actually say</span></>}
+            />
+            <div className="grid md:grid-cols-2 gap-6">
+              {TESTIMONIALS.map((t, i) => (
+                <div key={i} className="grad-border p-7 hover-lift reveal" style={{ transitionDelay: `${i * 80}ms` }}>
+                  <Quote className="w-8 h-8 text-indigo-400/60 mb-3" />
+                  <p className="text-slate-200 leading-relaxed">"{t.quote}"</p>
+                  <div className="mt-5">
+                    <div className="font-semibold text-white">{t.name}</div>
+                    <div className="text-xs text-slate-400">{[t.role, t.company].filter(Boolean).join(" · ")}</div>
+                    {t.result && <div className="mt-2 text-xs text-emerald-400">{t.result}</div>}
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
 
       {/* ====================== INSIGHTS ====================== */}
       <section className="relative py-12 px-4">

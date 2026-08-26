@@ -71,7 +71,7 @@ function ContactPage() {
             </p>
             <div className="space-y-5">
               <InfoRow icon={Mail} title="Email">
-                <a href="mailto:info@brainboxworld.dedyn.io" className="hover:text-blue-600">info@brainboxworld.dedyn.io</a>
+                <a href="mailto:hello@brainboxworld.com" className="hover:text-blue-600">hello@brainboxworld.com</a>
               </InfoRow>
               <InfoRow icon={Phone} title="Phone">
                 <a href="https://wa.me/13312782900" className="hover:text-blue-600">+1 (331) 278-2900</a>
