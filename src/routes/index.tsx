@@ -278,11 +278,12 @@ function HomePage() {
 
               <div className="absolute bottom-4 right-2 grad-border px-3 py-2 animate-float delay-200">
                 <div className="flex items-center gap-2 text-xs">
-                  <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-                  <span className="font-semibold text-white">4.9/5</span>
-                  <span className="text-slate-400">· 120+ reviews</span>
+                  <Globe2 className="w-3.5 h-3.5 text-indigo-300" />
+                  <span className="font-semibold text-white">Remote</span>
+                  <span className="text-slate-400">· clients worldwide</span>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
