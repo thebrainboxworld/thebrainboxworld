@@ -3,11 +3,12 @@ import { SiteLayout, CALENDLY_LINK, WHATSAPP_LINK } from "@/components/site/Site
 import { PlatformWall } from "@/components/site/PlatformWall";
 import { ClientResults } from "@/components/site/ClientResults";
 import { ecosystemProjects } from "@/lib/portfolio";
+import { SERVICES } from "@/lib/services";
+import { BRAND, VERIFIED_STATS, TESTIMONIALS } from "@/lib/site-config";
 import { absoluteUrl } from "@/lib/site";
-import { useEffect, useRef, useState } from "react";
 import {
-  Code2, Palette, ShoppingCart, BrainCog, TrendingUp, Smartphone, Headphones,
-  Sparkles, ArrowRight, ArrowUpRight, Check, Star, Quote, CalendarCheck,
+  Code2, ShoppingCart, BrainCog, TrendingUp,
+  Sparkles, ArrowRight, ArrowUpRight, Check, Quote, CalendarCheck,
   Rocket, Target, Layers, LineChart, ShieldCheck, Zap, Globe2, MessageSquare,
 } from "lucide-react";
 
@@ -16,10 +17,12 @@ export const Route = createFileRoute("/")({
     const url = absoluteUrl("/");
     return {
       meta: [
-        { title: "BrainBoxWorld — Digital Solutions, AI & Automation" },
-        { name: "description", content: "BrainBoxWorld builds high-performance websites, AI systems, automation, and growth-focused digital experiences. Book a 30-minute strategy call." },
-        { property: "og:title", content: "BrainBoxWorld — Modern Digital Solutions" },
-        { property: "og:description", content: "Websites, apps, AI, automation, and growth systems that scale. Book a 30-minute strategy call." },
+        { title: "BrainBoxWorld — E-commerce, Web, AI & Digital Growth" },
+        { name: "description", content: BRAND.description },
+        { property: "og:title", content: "BrainBoxWorld — Digital Solutions That Grow Your Business" },
+        { property: "og:description", content: BRAND.intro },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
         { property: "og:url", content: url },
       ],
       links: [{ rel: "canonical", href: url }],
@@ -30,15 +33,12 @@ export const Route = createFileRoute("/")({
 
 /* ----------------------------- DATA ----------------------------- */
 
-
-
-
-const stats = [
-  { value: 250, suffix: "+", label: "Projects Delivered" },
-  { value: 180, suffix: "%", label: "Avg. Growth Increase" },
-  { value: 25, suffix: "M+", prefix: "$", label: "Revenue Influenced" },
-  { value: 98, suffix: "%", label: "Client Satisfaction" },
-];
+const SERVICE_ICONS: Record<string, typeof Code2> = {
+  ecommerce: ShoppingCart,
+  "web-development": Code2,
+  "ai-automation": BrainCog,
+  "digital-growth": TrendingUp,
+};
 
 const whyUs = [
   { icon: Target, title: "Conversion-Focused Design", desc: "Every pixel engineered to move visitors from interest to action." },
@@ -49,54 +49,6 @@ const whyUs = [
   { icon: ShieldCheck, title: "Future-Proof Tech", desc: "Modern stacks chosen for longevity, not hype cycles." },
   { icon: Rocket, title: "Automation-Driven Workflows", desc: "We replace manual work with elegant, observable pipelines." },
   { icon: Sparkles, title: "Modern User Experiences", desc: "Premium UX that earns trust in the first 3 seconds." },
-];
-
-const services = [
-  {
-    icon: Code2, title: "Web & Software Development",
-    items: ["Websites", "Custom Web Apps", "SaaS Platforms", "API Development", "Dashboards", "CMS"],
-    desc: "Full-stack engineering for sites, apps and platforms that scale.",
-  },
-  {
-    icon: Palette, title: "UI/UX & Branding",
-    items: ["Product Design", "Wireframes & Prototypes", "Brand Identity", "Motion Graphics"],
-    desc: "Design systems and brand experiences that look as good as they perform.",
-  },
-  {
-    icon: ShoppingCart, title: "E-Commerce & Business Systems",
-    items: ["Shopify", "WooCommerce", "Payments", "Checkout Optimization", "Store Optimization"],
-    desc: "Stores engineered for conversion, retention and revenue growth.",
-  },
-  {
-    icon: BrainCog, title: "AI & Automation",
-    items: ["AI Chatbots", "Workflow Automation", "CRM Integration", "AI Features", "Dashboards"],
-    desc: "Smart systems that automate operations and unlock new revenue.",
-  },
-  {
-    icon: TrendingUp, title: "Digital Growth",
-    items: ["SEO", "Technical SEO", "CRO", "Analytics", "Performance Optimization"],
-    desc: "Data-led growth engineering across acquisition, activation and retention.",
-  },
-  {
-    icon: Smartphone, title: "Mobile & Cloud",
-    items: ["Mobile Apps", "Firebase", "Cloud Deployment", "DevOps Setup"],
-    desc: "Native-grade mobile and resilient cloud infrastructure.",
-  },
-  {
-    icon: Headphones, title: "Support & Consulting",
-    items: ["Maintenance", "Redesign", "Hosting", "MVP Development", "Consultation"],
-    desc: "Ongoing care, advisory and rapid MVP launches for ambitious teams.",
-  },
-];
-
-
-
-
-const testimonials = [
-  { quote: "BrainBoxWorld didn't just optimize our site — they rebuilt our entire growth engine. Organic traffic doubled within 90 days.", author: "Sarah Chen", role: "Founder, Retrospec", rating: 5 },
-  { quote: "The strategic clarity they brought was unlike any agency we've worked with. Every decision was backed by data.", author: "Marcus Reyes", role: "CEO, Darn Tough", rating: 5 },
-  { quote: "They understood our positioning instantly. The new experience converts like nothing we had before.", author: "Amara Okafor", role: "Marketing Lead, Trnda", rating: 5 },
-  { quote: "Our revenue tripled after they rebuilt our SEO and product discovery system. The ROI has been extraordinary.", author: "James Whitaker", role: "Co-Founder, Benetek", rating: 5 },
 ];
 
 const workflow = [
@@ -117,33 +69,6 @@ const insights = [
 
 /* ----------------------------- HELPERS ----------------------------- */
 
-function AnimatedCounter({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) {
-  const [n, setN] = useState(0);
-  const ref = useRef<HTMLSpanElement | null>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          const duration = 1800;
-          const start = performance.now();
-          const tick = (t: number) => {
-            const p = Math.min(1, (t - start) / duration);
-            const eased = 1 - Math.pow(1 - p, 3);
-            setN(Math.round(eased * value));
-            if (p < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-          io.disconnect();
-        }
-      });
-    }, { threshold: 0.4 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [value]);
-  return <span ref={ref}>{prefix}{n}{suffix}</span>;
-}
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
