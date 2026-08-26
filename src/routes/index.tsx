@@ -288,23 +288,23 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ====================== FLOATING STATS ====================== */}
-      <section className="relative -mt-6 md:-mt-10 px-4">
-        <div className="max-w-[1400px] mx-auto grad-border p-2 glow-soft reveal-zoom">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/5">
-            {stats.map((s, i) => (
-              <div key={s.label} className="p-6 md:p-8 text-center group">
-                <div className="text-3xl md:text-5xl font-bold font-display text-gradient">
-                  <AnimatedCounter value={s.value} prefix={s.prefix} suffix={s.suffix} />
+      {/* ====================== VERIFIED STATS (only real numbers) ====================== */}
+      {VERIFIED_STATS.length > 0 && (
+        <section className="relative -mt-6 md:-mt-10 px-4">
+          <div className="max-w-[1400px] mx-auto grad-border p-2 glow-soft reveal-zoom">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/5">
+              {VERIFIED_STATS.map((s) => (
+                <div key={s.label} className="p-6 md:p-8 text-center group">
+                  <div className="text-3xl md:text-5xl font-bold font-display text-gradient">{s.value}</div>
+                  <div className="mt-2 text-xs md:text-sm text-slate-400 tracking-wide uppercase">{s.label}</div>
+                  <div className="mt-3 h-0.5 w-10 mx-auto bg-gradient-to-r from-indigo-500 to-violet-400 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <div className="mt-2 text-xs md:text-sm text-slate-400 tracking-wide uppercase">{s.label}</div>
-                <div className="mt-3 h-0.5 w-10 mx-auto bg-gradient-to-r from-indigo-500 to-violet-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="sr-only">{i}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
 
       {/* ====================== PLATFORMS WE WORK WITH ====================== */}
       <section className="relative py-12 px-4">
