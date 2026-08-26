@@ -320,6 +320,10 @@ export const clientProjects: Project[] = [
 
 export const allProjects: Project[] = [...ecosystemProjects, ...clientProjects];
 
+// Backward-compatible name for previously generated split-route bundles.
+// Keep this alias until all production deployments have rebuilt from current source.
+export const caseStudies = clientProjects;
+
 /* ------------------------------------------------------------------ */
 /* Client results — proof of outcomes                                  */
 /* Add real MP4/YouTube/Vimeo/Drive links via the `video` field.       */
