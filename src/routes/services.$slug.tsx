@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteLayout, CALENDLY_LINK } from "@/components/site/SiteLayout";
 import { SERVICES, getService } from "@/lib/services";
-import { caseStudies } from "@/lib/portfolio";
+import { clientProjects } from "@/lib/portfolio";
 import { absoluteUrl } from "@/lib/site";
 import { ArrowRight, Check, CalendarCheck, AlertTriangle, Lightbulb } from "lucide-react";
 
@@ -105,7 +105,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 function ServicePage() {
   const { service: s } = Route.useLoaderData();
-  const related = caseStudies.slice(0, 3);
+  const related = clientProjects.slice(0, 3);
   const others = SERVICES.filter((x) => x.slug !== s.slug);
 
   return (
@@ -223,7 +223,7 @@ function ServicePage() {
             <h2 className="text-2xl md:text-4xl font-bold font-display tracking-tight">Relevant work</h2>
             <div className="mt-7 grid md:grid-cols-3 gap-4">
               {related.map((c) => (
-                <article key={c.slug} className="reveal glass rounded-2xl border border-white/10 p-5">
+                <article key={c.id} className="reveal glass rounded-2xl border border-white/10 p-5">
                   <span className="text-xs tracking-widest text-indigo-300 font-semibold">{c.industry}</span>
                   <h3 className="mt-2 font-semibold text-white">{c.name}</h3>
                   <p className="mt-2 text-sm text-slate-400 leading-relaxed line-clamp-4">{c.overview}</p>
