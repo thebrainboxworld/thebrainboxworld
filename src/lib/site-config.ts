@@ -66,6 +66,22 @@ export type VerifiedStat = {
 export const VERIFIED_STATS: VerifiedStat[] = [];
 
 /**
+ * Verified third-party review ratings. Only include platforms and numbers you
+ * can actually evidence. `url` links out to the public review profile.
+ */
+export type VerifiedRating = {
+  platform: string;
+  rating?: string;
+  count?: string;
+  url?: string;
+};
+export const VERIFIED_RATINGS: VerifiedRating[] = [
+  { platform: "Google", rating: "5.0", count: "12+ reviews", url: "https://maps.app.goo.gl/T6viiJ1m128KwdsL9" },
+  { platform: "Trustpilot", count: "14 reviews" },
+  { platform: "Clutch", rating: "5.0", count: "7 reviews" },
+];
+
+/**
  * Genuine client testimonials only — never invent names, roles or quotes.
  */
 export type Testimonial = {
