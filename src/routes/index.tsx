@@ -4,7 +4,7 @@ import { PlatformWall } from "@/components/site/PlatformWall";
 import { ClientResults } from "@/components/site/ClientResults";
 import { ecosystemProjects } from "@/lib/portfolio";
 import { SERVICES } from "@/lib/services";
-import { BRAND, VERIFIED_STATS, TESTIMONIALS } from "@/lib/site-config";
+import { BRAND, VERIFIED_STATS, VERIFIED_RATINGS, TESTIMONIALS } from "@/lib/site-config";
 import { absoluteUrl } from "@/lib/site";
 import {
   Code2, ShoppingCart, BrainCog, TrendingUp,
