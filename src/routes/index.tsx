@@ -10,6 +10,7 @@ import {
   Code2, ShoppingCart, BrainCog, TrendingUp,
   Sparkles, ArrowRight, ArrowUpRight, Check, Quote, CalendarCheck,
   Rocket, Target, Layers, LineChart, ShieldCheck, Zap, Globe2, MessageSquare,
+  Star,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
