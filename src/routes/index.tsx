@@ -232,6 +232,44 @@ function HomePage() {
         </section>
       )}
 
+      {/* ====================== VERIFIED RATINGS ====================== */}
+      {VERIFIED_RATINGS.length > 0 && (
+        <section className="relative -mt-6 md:-mt-10 px-4">
+          <div className="max-w-[1400px] mx-auto grad-border p-2 glow-soft reveal-zoom">
+            <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/5">
+              {VERIFIED_RATINGS.map((r) => {
+                const content = (
+                  <>
+                    <div className="text-xs tracking-[0.2em] uppercase text-slate-400 mb-2">{r.platform}</div>
+                    <div className="flex items-center justify-center gap-1 text-3xl md:text-4xl font-bold font-display text-gradient">
+                      {r.rating ? <span>{r.rating}</span> : <span>{r.count}</span>}
+                      {r.rating && <Star className="w-6 h-6 text-amber-400 fill-amber-400" />}
+                    </div>
+                    {r.rating && r.count && <div className="mt-2 text-sm text-slate-300">{r.count}</div>}
+                    {!r.rating && <div className="mt-2 text-sm text-slate-300">verified reviews</div>}
+                  </>
+                );
+                return r.url ? (
+                  <a key={r.platform} href={r.url} target="_blank" rel="noopener noreferrer"
+                    className="group block p-6 md:p-8 text-center hover:bg-white/5 transition-colors">
+                    {content}
+                    <div className="mt-3 inline-flex items-center gap-1 text-xs text-indigo-300 opacity-0 group-hover:opacity-100 transition-opacity">
+                      Read reviews <ArrowUpRight className="w-3 h-3" />
+                    </div>
+                  </a>
+                ) : (
+                  <div key={r.platform} className="group block p-6 md:p-8 text-center">
+                    {content}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+
+
 
       {/* ====================== PLATFORMS WE WORK WITH ====================== */}
       <section className="relative py-12 px-4">
